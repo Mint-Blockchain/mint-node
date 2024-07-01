@@ -1,6 +1,6 @@
-![Conduit](logo.png)
+![Mint](logo.png)
 
-# Conduit node
+# Mint node
 
 Conduit provides fully-managed, production-grade rollups on Ethereum.
 
@@ -8,25 +8,12 @@ It currently supports Optimism’s open-source [OP Stack](https://stack.optimism
 
 This repository contains the relevant Docker builds to run your own node on the specific Conduit network.
 
-<!-- Badge row 1 - status -->
-
-[![GitHub contributors](https://img.shields.io/github/contributors/conduitxyz/node)](https://github.com/conduitxyz/node/graphs/contributors)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/conduitxyz/node)](https://github.com/conduitxyz/node/graphs/contributors)
-[![GitHub Stars](https://img.shields.io/github/stars/conduitxyz/node)](https://github.com/conduitxyz/node/stargazers)
-![GitHub repo size](https://img.shields.io/github/repo-size/conduitxyz/node)
-[![GitHub](https://img.shields.io/github/license/conduitxyz/node?color=blue)](https://github.com/conduitxyz/node/blob/main/LICENSE)
-
-<!-- Badge row 2 - links and profiles -->
 
 [![Website conduit.xyz](https://img.shields.io/website-up-down-green-red/https/conduit.xyz.svg)](https://conduit.xyz)
 [![Blog](https://img.shields.io/badge/blog-up-green)](https://conduit.xyz/blog)
 [![Docs](https://img.shields.io/badge/docs-up-green)](https://conduit-xyz.notion.site/Documentation-a823096e3439465bb9a8a5f22d36638c)
 [![Twitter Conduit](https://img.shields.io/twitter/follow/conduitxyz?style=social)](https://twitter.com/conduitxyz)
 
-<!-- Badge row 3 - detailed status -->
-
-[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/conduitxyz/node.svg)](https://github.com/conduitxyz/node/pulls)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/conduitxyz/node.svg)](https://github.com/conduitxyz/node/issues)
 
 ### Software requirements
 
@@ -42,21 +29,12 @@ We recommend you have this configuration to run a node:
 
 ### Troubleshooting
 
-If you encounter problems with your node, please open a [GitHub issue](https://github.com/conduitxyz/node/issues/new/choose) or reach out on our [Discord](https://discord.com/invite/X5Yn3NzVRh):
+If you encounter problems with your node, please open a [GitHub issue](https://github.com/Mint-Blockchain/mint-node/issues) or reach out on our [Discord](https://discord.com/invite/mint-blockchain):
 
-### Supported networks
+### Networks Slug
 
 | Network      | Slug                    | Status |
 | ------------ | ----------------------- | :----: |
-| Zora Sepolia | zora-sepolia-0thyhxtf5e |   ✅   |
-| Zora Mainnet | zora-mainnet-0          |   ✅   |
-| PGN Sepolia  | pgn-sepolia-i4td3ji6i0  |   ✅   |
-| Mode Sepolia | mode-sepolia-vtnhnpim72 |   ✅   |
-| Mode Mainnet | mode-mainnet-0	         |   ✅   |
-| Ancient8 Sepolia | ancient-8-celestia-wib77nnwsq |   ✅   |
-| Ancient8 Mainnet | ancient8-mainnet-0  |   ✅   |
-| BOB Mainnet  | bob-mainnet-0           |   ✅   |
-| Gold Mainnet | gold-mainnet-0          |   ✅   |
 | Mint Sepolia | mint-sepolia-testnet-ijtsrc4ffq |   ✅   |
 | Mint Mainnet | mint-mainnet-0          |   ✅   |
 
