@@ -2,11 +2,9 @@
 
 # Mint node
 
-Conduit provides fully-managed, production-grade rollups on Ethereum.
-
 It currently supports Optimism’s open-source [OP Stack](https://stack.optimism.io/).
 
-This repository contains the relevant Docker builds to run your own node on the specific Conduit network.
+This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
 
 ### Software requirements
 
@@ -17,12 +15,8 @@ This repository contains the relevant Docker builds to run your own node on the 
 
 We recommend you have this configuration to run a node:
 
-- at least 16 GB RAM
-- an SSD drive with at least 200 GB free
-
-### Troubleshooting
-
-If you encounter problems with your node, please open a [GitHub issue](https://github.com/Mint-Blockchain/mint-node/issues) or reach out on our [Discord](https://discord.com/invite/mint-blockchain):
+- at least 2 Core * 8 GB RAM
+- an SSD drive with at least 100 GB free
 
 ### Networks Slug
 
@@ -103,3 +97,7 @@ You can see how many nodes you are connected with the following command:
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"opp2p_peerStats","params":[]}' -H "Content-Type: application/json" http://localhost:7545
 ```
+
+### Troubleshooting
+
+If you encounter problems with your node, please open a [GitHub issue](https://github.com/Mint-Blockchain/mint-node/issues) or reach out on our [Discord](https://discord.com/invite/mint-blockchain):
