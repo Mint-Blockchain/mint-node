@@ -27,41 +27,34 @@ We recommend you have this configuration to run a node:
 
 ### Usage
 
-1. Select the network you want to run and set Slug to `CONDUIT_NETWORK` env variable. Example:
-```
-# for Mainnet
-export CONDUIT_NETWORK=mint-mainnet-0
-```
-
-2. Download the required network configuration with:
+1. Download the required network configuration(rollup.json and genesis.json) with Network Slug:
 
 ```
-./download-config.py $CONDUIT_NETWORK
+./download-config.py mint-mainnet-0
 ```
 
-3. Ensure you have an Ethereum L1 full node RPC available, and copy `.env.example` to `.env`
+2. Copy `.env.example` to `.env`, ensure you have an Ethereum L1 full node RPC available:
+
 * setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be synced before the specific Conduit network will be able to fully sync.
 * You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
 
 Example:
 ```
 # .env file
-# [recommended] replace with your preferred L1 (Ethereum) node RPC URL:
 OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-4. Start the node!
+3. Start the node!
 
 ```
 docker compose up --build
 ```
 
-5. You should now be able to `curl` your node:
+4. You should now be able to `curl` your node:
 
 ```
-curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' \
-  -H "Content-Type: application/json" http://localhost:8545
+curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
 ```
 
 Note: Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
