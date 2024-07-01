@@ -36,29 +36,6 @@ if [ "${OP_GETH_ALLOW_UNPROTECTED_TXS+x}" = x ]; then
 	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rpc.allow-unprotected-txs=$OP_GETH_ALLOW_UNPROTECTED_TXS"
 fi
 
-if [ "${CHAIN_ID}" = "919" ]; then
-	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rollup.superchain-upgrades --op-network mode-sepolia --rollup.halt=major"
-fi
-
-if [ "${CHAIN_ID}" = "34443" ]; then
-	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --override.canyon=1704992401 --rollup.halt=major"
-fi
-
-if [ "${CHAIN_ID}" = "999999999" ]; then
-	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rollup.superchain-upgrades --op-network zora-sepolia --rollup.halt=major"
-fi
-
-if [ "${CHAIN_ID}" = "7777777" ]; then
-	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rollup.superchain-upgrades --op-network zora-mainnet --rollup.halt=major"
-fi
-
-if [ "${CHAIN_ID}" = "58008" ]; then
-	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rollup.superchain-upgrades --op-network pgn-sepolia --rollup.halt=major"
-fi
-
-if [ "${CHAIN_ID}" = "424" ]; then
-	ADDITIONAL_ARGS="$ADDITIONAL_ARGS --rollup.superchain-upgrades --op-network pgn-mainnet --rollup.halt=major"
-fi
 
 exec geth \
 	--datadir="$GETH_DATA_DIR" \
