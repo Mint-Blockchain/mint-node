@@ -8,13 +8,6 @@ It currently supports Optimism’s open-source [OP Stack](https://stack.optimism
 
 This repository contains the relevant Docker builds to run your own node on the specific Conduit network.
 
-
-[![Website conduit.xyz](https://img.shields.io/website-up-down-green-red/https/conduit.xyz.svg)](https://conduit.xyz)
-[![Blog](https://img.shields.io/badge/blog-up-green)](https://conduit.xyz/blog)
-[![Docs](https://img.shields.io/badge/docs-up-green)](https://conduit-xyz.notion.site/Documentation-a823096e3439465bb9a8a5f22d36638c)
-[![Twitter Conduit](https://img.shields.io/twitter/follow/conduitxyz?style=social)](https://twitter.com/conduitxyz)
-
-
 ### Software requirements
 
 - [Docker](https://docs.docker.com/desktop/)
@@ -40,14 +33,11 @@ If you encounter problems with your node, please open a [GitHub issue](https://g
 
 ### Usage
 
-1. Select the network you want to run and set `CONDUIT_NETWORK` env variable. You will need to know the `slug` of the network. You can find this in the Conduit console. For public networks you can use the table above. Example:
-
+1. Select the network you want to run and set Slug to `CONDUIT_NETWORK` env variable. Example:
 ```
-# for Mode Mainnet
-export CONDUIT_NETWORK=mode-mainnet-0
+# for Mainnet
+export CONDUIT_NETWORK=mint-mainnet-0
 ```
-
-Note: The external nodes feature must be enabled on the network for this to work. For the public networks above this is already set.
 
 2. Download the required network configuration with:
 
@@ -55,26 +45,16 @@ Note: The external nodes feature must be enabled on the network for this to work
 ./download-config.py $CONDUIT_NETWORK
 ```
 
-3. Ensure you have an Ethereum L1 full node RPC available (not Conduit), and copy `.env.example` to `.env` setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be synced before the specific Conduit network will be able to fully sync. You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`. Example:
+3. Ensure you have an Ethereum L1 full node RPC available, and copy `.env.example` to `.env`
+* setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be synced before the specific Conduit network will be able to fully sync.
+* You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
 
+Example:
 ```
 # .env file
-# [recommended] replace with your preferred L1 (Ethereum, not Conduit) node RPC URL:
-OP_NODE_L1_ETH_RPC=https://mainnet.gateway.tenderly.co/<your-tenderly-api-key>
+# [recommended] replace with your preferred L1 (Ethereum) node RPC URL:
+OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
-```
-
-If you are running a stack using `celestia` for DA, copy instead `.env.example.celestia` to `.env`, set also `CELESTIA_CORE_IP`, `CELESTIA_API` and `CELESTIA_P2P_NETWORK`. Example:
-
-```
-# .env file
-# see celestia doc for public nodes list
-# testnet https://docs.celestia.org/nodes/mocha-testnet#bridge-full-and-light-nodes
-# mainnet https://docs.celestia.org/nodes/mainnet
-CELESTIA_CORE_IP=full.consensus.mocha-4.celestia-mocha.com
-CELESTIA_API=https://rpc.celestia-mocha.com
-# mocha-4 for testnet and for mainnet use mainnet
-CELESTIA_P2P_NETWORK=mocha-4
 ```
 
 4. Start the node!
@@ -83,12 +63,7 @@ CELESTIA_P2P_NETWORK=mocha-4
 docker compose up --build
 ```
 
-For stacks using `celestia` for DA
-```
-docker compose -f docker-compose.celestia.yml up --build
-```
-
-5. You should now be able to `curl` your Conduit node:
+5. You should now be able to `curl` your node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' \
@@ -109,7 +84,7 @@ services:
 
 ### Snapshots
 
-Not yet available. We're working on it 🏗️
+Not yet available. We're working on it
 
 ### Syncing
 
@@ -128,6 +103,5 @@ $( curl -s -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Cont
 You can see how many nodes you are connected with the following command:
 
 ```
-curl -d '{"id":0,"jsonrpc":"2.0","method":"opp2p_peerStats","params":[]}' \
-  -H "Content-Type: application/json" http://localhost:7545
+curl -d '{"id":0,"jsonrpc":"2.0","method":"opp2p_peerStats","params":[]}' -H "Content-Type: application/json" http://localhost:7545
 ```
