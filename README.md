@@ -14,6 +14,9 @@ The mint node is already support the upgrade.
 
 Node operators need to update your client and restart before the activation date.
 ```
+
+Details of Fjord upgrade](https://docs.optimism.io/builders/notices/fjord-changes)
+
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
 | Mint Mainnet | v1.7.7 | v1.101315.2 |
