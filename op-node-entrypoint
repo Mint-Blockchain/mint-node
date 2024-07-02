@@ -14,4 +14,4 @@ CHAIN_ID=$(jq -r .config.chainId < "$OP_GETH_GENESIS_FILE_PATH")
 
 echo "$CONDUIT_OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 
-exec op-node
+exec op-node --override.fjord=1720627201 
