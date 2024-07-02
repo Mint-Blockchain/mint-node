@@ -6,6 +6,18 @@ It currently supports Optimism’s open-source [OP Stack](https://stack.optimism
 
 This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
 
+### Fjord upgrade
+```
+The Fjord upgrade on Mint Mainnet will be activated 1720627201 Thu July 10 16:00:01 UTC 2024
+
+The mint node is already support the upgrade.
+
+Node operators need to update your client and restart before the activation date.
+```
+| Network | op-node | op-geth |
+| ------- | ------- | ------- |
+| Mint Mainnet | v1.7.7 | v1.101315.2 |
+
 ### Software requirements
 
 - [Docker](https://docs.docker.com/desktop/)
