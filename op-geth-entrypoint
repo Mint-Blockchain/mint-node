@@ -66,4 +66,5 @@ exec geth \
 	--networkid="$CHAIN_ID" \
 	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
 	--port="$P2P_PORT" \
+	--override.fjord=1720627201 \
 	$ADDITIONAL_ARGS # intentionally unquoted
