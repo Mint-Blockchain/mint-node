@@ -9,17 +9,17 @@ This repository contains the relevant Docker builds to run your own RPC node for
 ### Fjord upgrade
 ```
 The Fjord upgrade on Mint Mainnet will be activated 1720627201 Thu July 10 16:00:01 UTC 2024
-
-The mint node is already support the upgrade.
 ```
 
 Node operators need to update your client before the activation date.
 
-step1: 
+step1:
 ```
-pull the latest op-geth-entrypoint and op-node-entrypoint, confirm already set --override.fjord=1720627201
+pull the latest op-geth-entrypoint and op-node-entrypoint
+
+and confirm both already set --override.fjord=1720627201
 ```
-step2: 
+step2:
 ```
 pull the latest releases of op-node and op-geth docker image
 ```
