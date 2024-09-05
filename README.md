@@ -34,7 +34,7 @@ restart the node
 
 
 
-[Details of Fjord upgrade](https://docs.optimism.io/builders/notices/fjord-changes)
+[Details of Granite upgrade](https://docs.optimism.io/builders/notices/granite-changes)
 
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
