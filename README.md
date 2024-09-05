@@ -19,7 +19,7 @@ pull the latest op-geth-entrypoint and op-node-entrypoint.
 
 and confirm both already set --override.fjord=1720627201 --override.granite=1726070401
 
-pull the latest networks/mint-mainnet-0/rollup.json.
+pull the latest rollup.json.
 
 and confirm that da_challenge_address, da_challenge_window, da_resolve_window, and use_plasma have already been deleted.
 ```
