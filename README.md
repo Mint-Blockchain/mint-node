@@ -60,22 +60,22 @@ We recommend you have this configuration to run a node:
 ```
 #  for Mint Mainnet
 
-  export CONDUIT_NETWORK=mainnet
+  export Mint_NETWORK=mainnet
 
 #  for Mint Sepolia
 
-  export CONDUIT_NETWORK=testnet-sepolia 
+  export Mint_NETWORK=testnet-sepolia 
 
 ```
 
-2. Copy `.env.example` to `.env`, ensure you have an Ethereum L1 full node RPC available:
+2. ensure you have an Ethereum L1 full node RPC available:
 
 * setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be synced before the specific Conduit network will be able to fully sync.
 * You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
 
 Example:
 ```
-# .env file
+# ${Mint_NETWORK}/.env file
 OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
