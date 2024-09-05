@@ -52,19 +52,20 @@ We recommend you have this configuration to run a node:
 - at least 2 Core * 8 GB RAM
 - an SSD drive with at least 100 GB free
 
-### Networks Slug
-
-| Network      | Slug                    | Status |
-| ------------ | ----------------------- | :----: |
-| Mint Sepolia | mint-sepolia-testnet-ijtsrc4ffq |   ✅   |
-| Mint Mainnet | mint-mainnet-0          |   ✅   |
 
 ### Usage
 
-1. Download the required network configuration(rollup.json and genesis.json) with Network Slug:
+1. Select the network you want to run and set CONDUIT_NETWORK env variable. Example:
 
 ```
-./download-config.py mint-mainnet-0
+#  for Mint Mainnet
+
+  export CONDUIT_NETWORK=mainnet
+
+#  for Mint Sepolia
+
+  export CONDUIT_NETWORK=testnet-sepolia 
+
 ```
 
 2. Copy `.env.example` to `.env`, ensure you have an Ethereum L1 full node RPC available:
