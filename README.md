@@ -75,7 +75,7 @@ We recommend you have this configuration to run a node:
 
 Example:
 ```
-# ${Mint_NETWORK}/.env file
+# .env file
 OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
