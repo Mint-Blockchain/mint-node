@@ -6,18 +6,22 @@ It currently supports Optimism’s open-source [OP Stack](https://stack.optimism
 
 This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
 
-### Fjord upgrade
+### Granite upgrade
 ```
-The Fjord upgrade on Mint Mainnet will be activated 1720627201 Thu July 10 16:00:01 UTC 2024
+The Granite upgrade on Mint Mainnet will be activated at 1726070401 - Wed 11 Sep 2024 16:00:01 UTC
 ```
 
 Node operators need to update your client before the activation date.
 
 step1:
 ```
-pull the latest op-geth-entrypoint and op-node-entrypoint
+pull the latest op-geth-entrypoint and op-node-entrypoint.
 
-and confirm both already set --override.fjord=1720627201
+and confirm both already set --override.fjord=1720627201 --override.granite=1726070401
+
+pull the latest networks/mint-mainnet-0/rollup.json.
+
+and confirm that da_challenge_address, da_challenge_window, da_resolve_window, and use_plasma have already been deleted.
 ```
 step2:
 ```
@@ -34,7 +38,7 @@ restart the node
 
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
-| Mint Mainnet | v1.7.7 | v1.101315.2 |
+| Mint Mainnet | v1.9.1 | v1.101408.0 |
 
 ### Software requirements
 
