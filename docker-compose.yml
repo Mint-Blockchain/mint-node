@@ -5,7 +5,7 @@ services:
     pull_policy: always
     build:
       context: .
-      dockerfile: ${Mint_NETWORK:?set network}/op-geth.Dockerfile
+      dockerfile: op-geth.Dockerfile
     ports:
       - 8545:8545       # RPC
       - 8546:8546       # websocket
@@ -22,7 +22,7 @@ services:
     pull_policy: always
     build:
       context: .
-      dockerfile: ${Mint_NETWORK:?set network}/op-node.Dockerfile
+      dockerfile: op-node.Dockerfile
     depends_on:
       - op-geth
     ports:
