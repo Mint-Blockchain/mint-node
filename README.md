@@ -13,23 +13,23 @@ The Granite upgrade on Mint Mainnet will be activated at 1726070401 - Wed 11 Sep
 
 Node operators need to update your client before the activation date.
 
-step1:
+step1:stop node and pull latest repo
 ```
-pull the latest op-geth-entrypoint and op-node-entrypoint.
+docker compose down
 
-and confirm both already set --override.fjord=1720627201 --override.granite=1726070401
+git pull
+```
 
-pull the latest rollup.json.
+step2:confirm flag config
+```
+Confirm that both op-geth-entrypoint and op-node-entrypoint are set with --override.fjord=1720627201 and --override.granite=1726070401
 
-and confirm that da_challenge_address, da_challenge_window, da_resolve_window, and use_plasma have already been deleted.
+Confirm that da_challenge_address, da_challenge_window, da_resolve_window, and use_plasma have been deleted from rollup.json
 ```
-step2:
+
+step3:start node
 ```
-pull the latest releases of op-node and op-geth docker image
-```
-step3:
-```
-restart the node
+docker compose up 
 ```
 
 
@@ -55,16 +55,12 @@ We recommend you have this configuration to run a node:
 
 ### Usage
 
-1. Select the network you want to run and set Mint_NETWORK env variable. Example:
+1. Select the network you want to run and set CONDUIT_NETWORK env variable. Example:
 
 ```
 #  for Mint Mainnet
 
-  export Mint_NETWORK=mainnet
-
-#  for Mint Sepolia
-
-  export Mint_NETWORK=testnet-sepolia 
+  export CONDUIT_NETWORK=mint-mainnet-0
 
 ```
 
@@ -80,22 +76,13 @@ OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-3. copy Mint_NETWORK file.
-
-Example:
-```
-cd Mint_NETWORK
-cp -a Mint_NETWORK/op-geth-entrypoint ./
-cp -a Mint_NETWORK/op-node-entrypoint ./
-```
-
-4. Start the node!
+3. Start the node!
 
 ```
 docker compose up --build
 ```
 
-5. You should now be able to `curl` your node:
+4. You should now be able to `curl` your node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
