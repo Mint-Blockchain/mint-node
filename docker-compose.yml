@@ -14,11 +14,10 @@ services:
       - 7301:6060       # metrics
     env_file:
       - .env.default
-      - networks/${CONDUIT_NETWORK:?set network}/.env
-      - .env
+      - ${Mint_NETWORK:?set network}/.env
     volumes:
       #- ./geth-data/:/data # enable to have persistency between restarts
-      - ./networks/${CONDUIT_NETWORK:?set network}/genesis.json:/genesis.json
+      - ./${Mint_NETWORK:?set network}/genesis.json:/genesis.json
   op-node:
     pull_policy: always
     build:
@@ -34,8 +33,7 @@ services:
       - 6060:6060     # pprof
     env_file:
       - .env.default
-      - networks/${CONDUIT_NETWORK:?set network}/.env
-      - .env
+      - ${Mint_NETWORK:?set network}/.env
     volumes:
-      - ./networks/${CONDUIT_NETWORK:?set network}/rollup.json:/rollup.json
-      - ./networks/${CONDUIT_NETWORK:?set network}/genesis.json:/genesis.json
+      - ./${Mint_NETWORK:?set network}/rollup.json:/rollup.json
+      - ./${Mint_NETWORK:?set network}/genesis.json:/genesis.json

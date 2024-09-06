@@ -19,7 +19,7 @@ pull the latest op-geth-entrypoint and op-node-entrypoint.
 
 and confirm both already set --override.fjord=1720627201 --override.granite=1726070401
 
-pull the latest networks/mint-mainnet-0/rollup.json.
+pull the latest rollup.json.
 
 and confirm that da_challenge_address, da_challenge_window, da_resolve_window, and use_plasma have already been deleted.
 ```
@@ -34,7 +34,7 @@ restart the node
 
 
 
-[Details of Fjord upgrade](https://docs.optimism.io/builders/notices/fjord-changes)
+[Details of Granite upgrade](https://docs.optimism.io/builders/notices/granite-changes)
 
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
@@ -52,22 +52,23 @@ We recommend you have this configuration to run a node:
 - at least 2 Core * 8 GB RAM
 - an SSD drive with at least 100 GB free
 
-### Networks Slug
-
-| Network      | Slug                    | Status |
-| ------------ | ----------------------- | :----: |
-| Mint Sepolia | mint-sepolia-testnet-ijtsrc4ffq |   ✅   |
-| Mint Mainnet | mint-mainnet-0          |   ✅   |
 
 ### Usage
 
-1. Download the required network configuration(rollup.json and genesis.json) with Network Slug:
+1. Select the network you want to run and set Mint_NETWORK env variable. Example:
 
 ```
-./download-config.py mint-mainnet-0
+#  for Mint Mainnet
+
+  export Mint_NETWORK=mainnet
+
+#  for Mint Sepolia
+
+  export Mint_NETWORK=testnet-sepolia 
+
 ```
 
-2. Copy `.env.example` to `.env`, ensure you have an Ethereum L1 full node RPC available:
+2. ensure you have an Ethereum L1 full node RPC available:
 
 * setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be synced before the specific Conduit network will be able to fully sync.
 * You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
@@ -79,13 +80,22 @@ OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-3. Start the node!
+3. copy Mint_NETWORK file.
+
+Example:
+```
+cd Mint_NETWORK
+cp -a Mint_NETWORK/op-geth-entrypoint ./
+cp -a Mint_NETWORK/op-node-entrypoint ./
+```
+
+4. Start the node!
 
 ```
 docker compose up --build
 ```
 
-4. You should now be able to `curl` your node:
+5. You should now be able to `curl` your node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
