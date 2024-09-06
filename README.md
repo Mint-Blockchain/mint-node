@@ -27,12 +27,15 @@ Confirm that both op-geth-entrypoint and op-node-entrypoint are set with --overr
 Confirm that da_challenge_address, da_challenge_window, da_resolve_window, and use_plasma have been deleted from rollup.json
 ```
 
-step3:start node
+step3:delete old docker image
+```
+docker rmi $(docker images -q)
+```
+
+step4:start node
 ```
 docker compose up 
 ```
-
-
 
 [Details of Granite upgrade](https://docs.optimism.io/builders/notices/granite-changes)
 
