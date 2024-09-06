@@ -55,7 +55,7 @@ We recommend you have this configuration to run a node:
 
 ### Usage
 
-1. Select the network you want to run and set CONDUIT_NETWORK env variable. Example:
+1. Select the network you want to run and set Mint_NETWORK env variable. Example:
 
 ```
 #  for Mint Mainnet
@@ -80,13 +80,22 @@ OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-3. Start the node!
+3. copy Mint_NETWORK file.
+
+Example:
+```
+cd Mint_NETWORK
+cp -a Mint_NETWORK/op-geth-entrypoint ./
+cp -a Mint_NETWORK/op-node-entrypoint ./
+```
+
+4. Start the node!
 
 ```
 docker compose up --build
 ```
 
-4. You should now be able to `curl` your node:
+5. You should now be able to `curl` your node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
