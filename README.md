@@ -85,7 +85,7 @@ curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["late
 
 Note: Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
 
-You can map a local data directory for op-geth by adding a volume mapping to the docker-compose-mainnet.yml or docker-compose-testnet-sepolia.yml:
+You can map a local data directory for `op-geth` by adding a volume mapping to the `docker-compose-mainnet.yml` or `docker-compose-testnet-sepolia.yml`:
 
 ```yaml
 services:
@@ -95,6 +95,12 @@ services:
       - ./geth-data:/data
 ```
 
+You can choose the type of node to run, either a full node or an archive node. You need to modify the value of `--gcmode` in the `op-geth-entrypoint` file:
+
+```
+# op-geth-entrypoint file
+--gcmode=archive
+```
 ### Snapshots
 
 Not yet available. We're working on it
