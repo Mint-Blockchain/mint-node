@@ -27,14 +27,9 @@ Confirm that both op-geth-entrypoint and op-node-entrypoint are set with --overr
 Confirm that da_challenge_address, da_challenge_window, da_resolve_window, and use_plasma have been deleted from rollup.json
 ```
 
-step3:delete old docker image
+step3:start node
 ```
-docker rmi $(docker images -q)
-```
-
-step4:start node
-```
-docker compose up 
+docker compose up --build
 ```
 
 [Details of Granite upgrade](https://docs.optimism.io/builders/notices/granite-changes)
@@ -53,21 +48,12 @@ docker compose up
 We recommend you have this configuration to run a node:
 
 - at least 2 Core * 8 GB RAM
-- an SSD drive with at least 100 GB free
+- an SSD drive with at least 150 GB free
 
 
 ### Usage
 
-1. Select the network you want to run and set CONDUIT_NETWORK env variable. Example:
-
-```
-#  for Mint Mainnet
-
-  export CONDUIT_NETWORK=mint-mainnet-0
-
-```
-
-2. ensure you have an Ethereum L1 full node RPC available:
+1. ensure you have an Ethereum L1 full node RPC available:
 
 * setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be synced before the specific Conduit network will be able to fully sync.
 * You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
@@ -79,13 +65,19 @@ OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-3. Start the node!
+2. Start the node!Select the network you want to run.
+
+Example:
 
 ```
-docker compose up --build
+#  for Mint Mainnet
+docker compose up -f docker-compose-mainnet.yml --build
+
+#  for Mint Sepolia
+docker compose up -f docker-compose-testnet-sepolia.yml --build
 ```
 
-4. You should now be able to `curl` your node:
+3. You should now be able to `curl` your node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
@@ -93,7 +85,7 @@ curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["late
 
 Note: Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
 
-You can map a local data directory for `op-geth` by adding a volume mapping to the `docker-compose.yaml`:
+You can map a local data directory for op-geth by adding a volume mapping to the docker-compose-mainnet.yml or docker-compose-testnet-sepolia.yml:
 
 ```yaml
 services:
