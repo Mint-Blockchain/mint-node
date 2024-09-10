@@ -82,7 +82,7 @@ exec geth \
 	--metrics.addr=0.0.0.0 \
 	--metrics.port="$METRICS_PORT" \
 	--syncmode=full \
-	--gcmode=full \
+	--gcmode=archive \
 	--nodiscover \
 	--maxpeers=100 \
 	--nat=extip:$HOST_IP \
