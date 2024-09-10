@@ -98,8 +98,11 @@ services:
 You can choose the type of node to run, either a full node or an archive node. You need to modify the value of `--gcmode` in the `op-geth-entrypoint` file:
 
 ```
-# op-geth-entrypoint file
+# archive node
 --gcmode=archive
+
+# full node
+--gcmode=full
 ```
 ### Snapshots
 
