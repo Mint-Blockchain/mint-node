@@ -71,10 +71,10 @@ Example:
 
 ```
 #  for Mint Mainnet
-docker compose up -f docker-compose-mainnet.yml --build
+docker compose -f docker-compose-mainnet.yml up --build
 
 #  for Mint Sepolia
-docker compose up -f docker-compose-testnet-sepolia.yml --build
+docker compose -f docker-compose-testnet-sepolia.yml up --build
 ```
 
 3. You should now be able to `curl` your node:
