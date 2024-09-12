@@ -95,7 +95,7 @@ services:
       - ./geth-data:/data
 ```
 
-You can choose the type of node to run, either a full node or an archive node. You need to modify the value of `--gcmode` in the `op-geth-entrypoint` file:
+You can choose the type of node to run, either a full node or an archive node. You need to modify the value of `--gcmode` in the `op-geth-entrypoint` file. By default, the node type is set to archive.
 
 ```
 # archive node
