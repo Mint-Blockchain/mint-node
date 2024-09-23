@@ -29,11 +29,11 @@ OP_NODE_L1_BEACON=<beacon api rpc>
 
 2. Start the node
 
-####  for Mint Mainnet
+* for Mint Mainnet
 ```
 docker compose -f docker-compose-mainnet.yml up --build
 ```
-####  for Mint Sepolia
+* for Mint Sepolia
 ```
 docker compose -f docker-compose-testnet-sepolia.yml up --build
 ```
@@ -45,11 +45,9 @@ curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["late
 ```
 
 #### Note
-```
-Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
-```
+1. Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
 
-You can map a local data directory for `op-geth` by adding a volume mapping to `docker-compose-xxx.yml`:
+2. You can map a local data directory for `op-geth` by adding a volume mapping to `docker-compose-xxx.yml`:
 ```
 services:
   geth: # this is Optimism's geth client
@@ -58,7 +56,7 @@ services:
       - ./geth-data:/data
 ```
 
-By default, the node type is `Archive`. you can change the type of node via modify the value of `--gcmode` in the `op-geth-entrypoint` file. 
+3. By default, the node type is `Archive`. you can change the type of node via modify the value of `--gcmode` in the `op-geth-entrypoint` file. 
 
 ```
 # for full node
