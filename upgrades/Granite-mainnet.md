@@ -32,8 +32,3 @@ docker compose up --build
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
 | Mint Mainnet | v1.9.1 | v1.101408.0 |
-
-### Software requirements
-
-- [Docker](https://docs.docker.com/desktop/)
-- [Python 3](https://www.python.org/downloads/)

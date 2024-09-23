@@ -6,6 +6,11 @@ It currently supports Optimism’s open-source [OP Stack](https://stack.optimism
 
 This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
 
+### Software requirements
+
+- [Docker](https://docs.docker.com/desktop/)
+- [Python 3](https://www.python.org/downloads/)
+
 ### Hardware requirements
 
 We recommend you have this configuration to run a node:
