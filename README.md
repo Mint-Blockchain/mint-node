@@ -6,43 +6,6 @@ It currently supports Optimism’s open-source [OP Stack](https://stack.optimism
 
 This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
 
-### Granite upgrade
-```
-The Granite upgrade on Mint Mainnet will be activated at 1726070401 - Wed 11 Sep 2024 16:00:01 UTC
-```
-
-Node operators need to update your client before the activation date.
-
-step1:stop node and pull latest repo
-```
-docker compose down
-
-git pull
-```
-
-step2:confirm flag config
-```
-Confirm that both op-geth-entrypoint and op-node-entrypoint are set with --override.fjord=1720627201 and --override.granite=1726070401
-
-Confirm that da_challenge_address, da_challenge_window, da_resolve_window, and use_plasma have been deleted from rollup.json
-```
-
-step3:start node
-```
-docker compose up --build
-```
-
-[Details of Granite upgrade](https://docs.optimism.io/builders/notices/granite-changes)
-
-| Network | op-node | op-geth |
-| ------- | ------- | ------- |
-| Mint Mainnet | v1.9.1 | v1.101408.0 |
-
-### Software requirements
-
-- [Docker](https://docs.docker.com/desktop/)
-- [Python 3](https://www.python.org/downloads/)
-
 ### Hardware requirements
 
 We recommend you have this configuration to run a node:
@@ -50,12 +13,11 @@ We recommend you have this configuration to run a node:
 - at least 2 Core * 8 GB RAM
 - an SSD drive with at least 150 GB free
 
-
 ### Usage
 
 1. ensure you have an Ethereum L1 full node RPC available:
 
-* setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be synced before the specific Conduit network will be able to fully sync.
+* setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be fully synced.
 * You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
 
 Example:
@@ -65,29 +27,30 @@ OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-2. Start the node!Select the network you want to run.
+2. Start the node
 
-Example:
-
+####  for Mint Mainnet
 ```
-#  for Mint Mainnet
 docker compose -f docker-compose-mainnet.yml up --build
-
-#  for Mint Sepolia
+```
+####  for Mint Sepolia
+```
 docker compose -f docker-compose-testnet-sepolia.yml up --build
 ```
 
-3. You should now be able to `curl` your node:
+3. Test your node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
 ```
 
-Note: Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
+#### Note
+```
+Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
+```
 
-You can map a local data directory for `op-geth` by adding a volume mapping to the `docker-compose-mainnet.yml` or `docker-compose-testnet-sepolia.yml`:
-
-```yaml
+You can map a local data directory for `op-geth` by adding a volume mapping to `docker-compose-xxx.yml`:
+```
 services:
   geth: # this is Optimism's geth client
     ...
@@ -95,15 +58,13 @@ services:
       - ./geth-data:/data
 ```
 
-You can choose the type of node to run, either a full node or an archive node. You need to modify the value of `--gcmode` in the `op-geth-entrypoint` file. By default, the node type is set to archive.
+By default, the node type is `Archive`. you can change the type of node via modify the value of `--gcmode` in the `op-geth-entrypoint` file. 
 
 ```
-# archive node
---gcmode=archive
-
-# full node
+# for full node
 --gcmode=full
 ```
+
 ### Snapshots
 
 Not yet available. We're working on it
