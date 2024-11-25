@@ -91,4 +91,5 @@ exec geth \
 	--port="$P2P_PORT" \
 	--override.fjord=1716998400 \
         --override.granite=1723478400 \
+        --override.holocene=1732633200 \
 	$ADDITIONAL_ARGS # intentionally unquoted
