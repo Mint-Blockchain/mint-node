@@ -29,8 +29,6 @@
   "batch_inbox_address": "0x8aac168a9212685296ee79b0fa2ffcbff294d963",
   "deposit_contract_address": "0x0f598afc1c303bf2d0ee82435b58c7b47bc56ed1",
   "l1_system_config_address": "0x6f1ee2ac9b51a3bef3aceb3bfced761c01b414ec",
-  "protocol_versions_address": "0x0000000000000000000000000000000000000000",
-  "channel_timeout_granite": 50,
-  "use_plasma": false
+  "protocol_versions_address": "0x0000000000000000000000000000000000000000"
 }
 
