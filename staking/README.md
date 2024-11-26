@@ -1,6 +1,6 @@
 # Mint Staking Node
 
-This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
+This repository contains the relevant Docker builds to run your own RPC node and IPFS node for Mint Blockchain.
 
 ### Software requirements
 
@@ -10,8 +10,8 @@ This repository contains the relevant Docker builds to run your own RPC node for
 
 We recommend you have this configuration to run a node:
 
-- at least 2 Core * 8 GB RAM
-- an SSD drive with at least 150 GB free
+- at least 4 Core * 16 GB RAM
+- an SSD drive with at least 200 GB free
 
 ### Usage
 
@@ -22,13 +22,54 @@ We recommend you have this configuration to run a node:
 
 2. Start Node
 
-* for Mint Mainnet
+* For Mint Mainnet
 ```
-docker compose -f docker-compose-mainnet-staking.yml up --build
+cd staking
+docker compose -f docker-compose-staking-mainnet.yml up --build
 ```
-* for Mint Sepolia
+* For Mint Sepolia
 ```
-docker compose -f docker-compose-testnet-sepolia-staking.yml up --build
+cd staking
+docker compose -f docker-compose-staking-testnet-sepolia.yml up --build
+```
+
+3. Test your node:
+
+* For Mint RPC
+```
+curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
+```
+* For IPFS Node
+```
+curl -I http://localhost:8088/ipfs/QmPmwb54NBPhqKTG1t2m5JtdeP3Hz2eQ9rhtGMFQEeabKm
+```
+#### Note
+1. Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
+
+2. You can map local data directories for op-geth and ipfs by adding volume mappings in the docker-compose-xxx.yml file:
+```
+services:
+  ipfs:
+    ...
+    volumes:
+      - ./data/ipfs:/data/ipfs
+  geth: # this is Optimism's geth client
+    ...
+    volumes:
+      - ./geth-data:/data
+```
+
+3. By default, the node type is `Archive`. you can change the type of node via modify the value of `--gcmode` in the `op-geth-entrypoint` file. 
+
+```
+# for full node
+--gcmode=full
+```
+
+4.The IPFS gateway port is forwarded through Nginx, with the default port set to 8088. Additionally, there is a QPS limit in place, with the default value set to 20. You can modify these two parameters in the .env.nginx file as needed.
+```
+QPS=50r/s
+PORT=8088
 ```
 
 ### Troubleshooting
