@@ -14,7 +14,7 @@ services:
       - 7301:6060       # metrics
     env_file:
       - .env.default
-      - mainnet/.env
+      - mainnet/.env.default
     volumes:
       #- ./geth-data/:/data # enable to have persistency between restarts
       - ./mainnet/genesis.json:/genesis.json
@@ -33,7 +33,7 @@ services:
       - 6060:6060     # pprof
     env_file:
       - .env.default
-      - ./mainnet/.env
+      - ./mainnet/.env.default
     volumes:
       - ./mainnet/rollup.json:/rollup.json
       - ./mainnet/genesis.json:/genesis.json

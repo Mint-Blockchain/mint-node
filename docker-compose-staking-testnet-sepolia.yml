@@ -9,7 +9,7 @@ services:
       - "5001:5001"  # IPFS API
       - "8080:8080"  # Gateway port
     volumes:
-      - /data/ipfs:/data/ipfs   # enable to have persistency between restarts
+      # - ./data/ipfs:/data/ipfs   # enable to have persistency between restarts
 
   nginx:
     image: nginx:latest
@@ -19,17 +19,15 @@ services:
       - ipfs
     ports:
       - "${PORT}:${PORT}"
-    env_file:
-      - ./.env.nginx
     entrypoint: /bin/sh -c "/generate_nginx_config.sh && nginx -g 'daemon off;'"
     volumes:
-      - ./generate_nginx_config.sh:/generate_nginx_config.sh:ro
+      - ./staking/generate_nginx_config.sh:/generate_nginx_config.sh:ro 
 
   op-geth: # this is Optimism's geth client
     pull_policy: always
     build:
       context: .
-      dockerfile: ../mainnet/op-geth.Dockerfile
+      dockerfile: ./testnet-sepolia/op-geth.Dockerfile
     ports:
       - 8545:8545       # RPC
       - 8546:8546       # websocket
@@ -37,16 +35,16 @@ services:
       - 30303:30303/udp # P2P UDP (currently unused)
       - 7301:6060       # metrics
     env_file:
-      - ../.env.default
-      - ../mainnet/.env
+      - ./.env.default
+      - ./testnet-sepolia/.env.default
     volumes:
       #- ./geth-data/:/data # enable to have persistency between restarts
-      - ../mainnet/genesis.json:/genesis.json
+      - ./testnet-sepolia/genesis.json:/genesis.json
   op-node:
     pull_policy: always
     build:
       context: .
-      dockerfile: ../mainnet/op-node.Dockerfile
+      dockerfile: ./testnet-sepolia/op-node.Dockerfile
     depends_on:
       - op-geth
     ports:
@@ -56,8 +54,8 @@ services:
       - 7300:7300     # metrics
       - 6060:6060     # pprof
     env_file:
-      - ../.env.default
-      - ../mainnet/.env
+      - ./.env.default
+      - ./testnet-sepolia/.env.default
     volumes:
-      - ../mainnet/rollup.json:/rollup.json
-      - ../mainnet/genesis.json:/genesis.json
+      - ./testnet-sepolia/rollup.json:/rollup.json
+      - ./testnet-sepolia/genesis.json:/genesis.json
