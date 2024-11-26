@@ -72,7 +72,7 @@ services:
 --gcmode=full
 ```
 
-4.The IPFS gateway port is forwarded through Nginx, with the default port set to 8088. Additionally, there is a QPS limit in place, with the default value set to 20. You can modify these two parameters in the .env.nginx file as needed.
+4. The IPFS gateway port is forwarded through Nginx, with the default port set to 8088. Additionally, there is a QPS limit in place, with the default value set to 20. You can modify these two parameters in the .env.nginx file as needed.
 ```
 QPS=50r/s
 PORT=8088
