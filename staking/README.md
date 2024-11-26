@@ -19,6 +19,12 @@ We recommend you have this configuration to run a node:
 
 * setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be fully synced.
 * You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
+Example:
+```
+# .env file
+OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
+OP_NODE_L1_BEACON=<beacon api rpc>
+```
 
 2. Start Node
 
