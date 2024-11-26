@@ -19,6 +19,8 @@ services:
       - ipfs
     ports:
       - "${PORT}:${PORT}"
+    env_file:
+      - .env
     entrypoint: /bin/sh -c "/generate_nginx_config.sh && nginx -g 'daemon off;'"
     volumes:
       - ./staking/generate_nginx_config.sh:/generate_nginx_config.sh:ro 
@@ -35,7 +37,8 @@ services:
       - 30303:30303/udp # P2P UDP (currently unused)
       - 7301:6060       # metrics
     env_file:
-      - ./.env.default
+      - .env
+      - .env.default
       - ./testnet-sepolia/.env.default
     volumes:
       #- ./geth-data/:/data # enable to have persistency between restarts
@@ -54,7 +57,8 @@ services:
       - 7300:7300     # metrics
       - 6060:6060     # pprof
     env_file:
-      - ./.env.default
+      - .env
+      - .env.default
       - ./testnet-sepolia/.env.default
     volumes:
       - ./testnet-sepolia/rollup.json:/rollup.json

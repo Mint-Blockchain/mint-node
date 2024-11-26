@@ -13,6 +13,7 @@ services:
       - 30303:30303/udp # P2P UDP (currently unused)
       - 7301:6060       # metrics
     env_file:
+      - .env
       - .env.default
       - mainnet/.env.default
     volumes:
@@ -32,6 +33,7 @@ services:
       - 7300:7300     # metrics
       - 6060:6060     # pprof
     env_file:
+      - .env
       - .env.default
       - ./mainnet/.env.default
     volumes:
