@@ -30,12 +30,10 @@ OP_NODE_L1_BEACON=<beacon api rpc>
 
 * For Mint Mainnet
 ```
-cd staking
 docker compose -f docker-compose-staking-mainnet.yml up --build
 ```
 * For Mint Sepolia
 ```
-cd staking
 docker compose -f docker-compose-staking-testnet-sepolia.yml up --build
 ```
 
