@@ -13,9 +13,8 @@ services:
       - 30303:30303/udp # P2P UDP (currently unused)
       - 7301:6060       # metrics
     env_file:
-      - .env
       - .env.default
-      - ./testnet-sepolia/.env.testnet
+      - ./testnet-sepolia/.env
     volumes:
       #- ./geth-data/:/data # enable to have persistency between restarts
       - ./testnet-sepolia/genesis.json:/genesis.json
@@ -33,9 +32,8 @@ services:
       - 7300:7300     # metrics
       - 6060:6060     # pprof
     env_file:
-      - .env
       - .env.default
-      - ./testnet-sepolia/.env.testnet
+      - ./testnet-sepolia/.env
     volumes:
       - ./testnet-sepolia/rollup.json:/rollup.json
       - ./testnet-sepolia/genesis.json:/genesis.json

@@ -20,7 +20,7 @@ services:
     ports:
       - "8088:8088"
     env_file:
-      - .env
+      - ./staking/.env
     entrypoint: /bin/sh -c "/generate_nginx_config.sh && nginx -g 'daemon off;'"
     volumes:
       - ./staking/generate_nginx_config.sh:/generate_nginx_config.sh:ro
@@ -37,9 +37,8 @@ services:
       - 30303:30303/udp # P2P UDP (currently unused)
       - 7301:6060       # metrics
     env_file:
-      - .env
       - .env.default
-      - ./mainnet/.env.mainnet
+      - ./mainnet/.env
     volumes:
       #- ./geth-data/:/data # enable to have persistency between restarts
       - ./mainnet/genesis.json:/genesis.json
@@ -57,9 +56,8 @@ services:
       - 7300:7300     # metrics
       - 6060:6060     # pprof
     env_file:
-      - .env
       - .env.default
-      - ./mainnet/.env.mainnet
+      - ./mainnet/.env
     volumes:
       - ./mainnet/rollup.json:/rollup.json
       - ./mainnet/genesis.json:/genesis.json
