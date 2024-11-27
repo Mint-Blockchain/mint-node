@@ -17,7 +17,7 @@ http {
     limit_req_zone \$binary_remote_addr zone=ipfs_zone:10m rate=${QPS};
 
     server {
-        listen ${PORT};
+        listen 8088;
 
         location /ipfs {
             proxy_pass http://ipfs:8080;  # 转发到 IPFS 容器

@@ -15,7 +15,7 @@ services:
     env_file:
       - .env
       - .env.default
-      - mainnet/.env.default
+      - ./mainnet/.env.mainnet
     volumes:
       #- ./geth-data/:/data # enable to have persistency between restarts
       - ./mainnet/genesis.json:/genesis.json
@@ -35,7 +35,7 @@ services:
     env_file:
       - .env
       - .env.default
-      - ./mainnet/.env.default
+      - ./mainnet/.env.mainnet
     volumes:
       - ./mainnet/rollup.json:/rollup.json
       - ./mainnet/genesis.json:/genesis.json
