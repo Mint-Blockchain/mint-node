@@ -1,6 +1,30 @@
 version: '3.8'
 
 services:
+  ipfs:
+    image: ipfs/kubo:latest
+    pull_policy: always
+    container_name: ipfs
+    ports:
+      - "5001:5001"  # IPFS API
+      - "8080:8080"  # Gateway port
+    volumes:
+      #- ./data/ipfs:/data/ipfs   # enable to have persistency between restarts
+
+  nginx:
+    image: nginx:latest
+    pull_policy: always
+    container_name: nginx
+    depends_on:
+      - ipfs
+    ports:
+      - "8088:8088"
+    env_file:
+      - ./staking/.env
+    entrypoint: /bin/sh -c "/generate_nginx_config.sh && nginx -g 'daemon off;'"
+    volumes:
+      - ./staking/generate_nginx_config.sh:/generate_nginx_config.sh:ro
+
   op-geth: # this is Optimism's geth client
     pull_policy: always
     build:
