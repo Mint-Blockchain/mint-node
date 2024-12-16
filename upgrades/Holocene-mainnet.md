@@ -30,5 +30,5 @@ docker compose up --build
 
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
-| Mint Sepolia | v1.10.0 | v1.101411.2 |
+| Mint Mainnet | v1.10.0 | v1.101411.2 |
 
