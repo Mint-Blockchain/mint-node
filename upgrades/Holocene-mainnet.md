@@ -3,12 +3,9 @@
 The Holocene upgrade for the Mainnet Superchain is optimistically scheduled for Thu 9 Jan 2025 18:00:01 UTC.
 ```
 
-Node operators need to update your client before the activation date.
+[Details of Holocene Mainnet upgrade](https://docs.optimism.io/builders/notices/holocene-changes)
 
-Prior to the update, please confirm the following:
-* run op-geth >= v1.101411.2
-* run op-node >= v1.10.0
-* set on both the flag  --override.holocene=1736445601
+Node operators need to update your client before the activation date.
 
 #### step 1: stop node
 ```
@@ -31,7 +28,11 @@ Confirm that both op-geth-entrypoint and op-node-entrypoint are configured with 
 docker compose up --build
 ```
 
-[Details of Holocene Mainnet upgrade](https://docs.optimism.io/builders/notices/holocene-changes)
+If you can't follow the upgrade steps, please confirm the following:
+* run op-geth >= v1.101411.2
+* run op-node >= v1.10.0
+* set on both the flag  --override.holocene=1736445601
+
 
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
