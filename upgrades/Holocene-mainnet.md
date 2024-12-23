@@ -5,6 +5,11 @@ The Holocene upgrade for the Mainnet Superchain is optimistically scheduled for 
 
 Node operators need to update your client before the activation date.
 
+Prior to the update, please confirm the following:
+* run op-geth >= v1.101411.2
+* run op-node >= v1.10.0
+* set on both the flag  --override.holocene=1736445601
+
 #### step 1: stop node
 ```
 docker compose down
@@ -31,4 +36,3 @@ docker compose up --build
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
 | Mint Mainnet | v1.10.0 | v1.101411.2 |
-
