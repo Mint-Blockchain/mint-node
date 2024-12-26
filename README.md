@@ -70,7 +70,38 @@ services:
 
 ### Snapshots
 
-Not yet available. We're working on it
+#### Download latest snapshot from Mint
+
+- **Mainnet**
+  - **Archive** https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst
+
+- **Sepolia**
+  
+  Not yet available. We're working on it
+
+Example:
+
+```sh
+mkdir -p ./data/mainnet-geth
+
+# Download latest snapshot tarball
+# You can choose one of two ways to download，Using aria2c to download can improve download speed, but you need to install aria2
+1.
+wget -c  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst 
+2.
+aria2c -x 16 -s 16 -k 100M  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst 
+
+# unzip snapshot to the ledger path:
+tar --use-compress-program=unzstd -xvf https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst -C ./data/mainnet-geth
+
+```
+
+Check the data was unarchived successfully:
+
+```sh
+$ ls ./data/mainnet-geth
+chaindata
+```
 
 ### Syncing
 
