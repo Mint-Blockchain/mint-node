@@ -74,6 +74,7 @@ services:
 
 - **Mainnet**
   - **Archive** https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst
+  - **Full**    https://storage.googleapis.com/mint-snapshot/mint-mainnet-full-snapshot-20250102.tar.zst
 
 - **Sepolia**
   
@@ -89,10 +90,10 @@ mkdir -p ./data/mainnet-geth
 1.
 wget -c  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst 
 2.
-aria2c -x 16 -s 16 -k 100M  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst 
+aria2c -x 16 -s 16 -k 100M  https://storage.googleapis.com/mint-mainnet-archive-snapshot-20241226.tar.zst 
 
 # unzip snapshot to the ledger path:
-tar --use-compress-program=unzstd -xvf https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst -C ./data/mainnet-geth
+tar --use-compress-program=unzstd -xvf mint-mainnet-archive-snapshot-20241226.tar.zst -C ./data/mainnet-geth
 
 ```
 
