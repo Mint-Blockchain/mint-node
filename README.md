@@ -23,7 +23,7 @@ We recommend you have this configuration to run a node:
 1. ensure you have an Ethereum L1 full node RPC available:
 
 * setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be fully synced.
-* You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
+* You also need a Beacon API RPC which can be set in `OP_NODE_L1_BEACON`.
 
 Example:
 ```
