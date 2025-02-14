@@ -78,7 +78,7 @@ services:
 
 - **Sepolia**
   
-  Not yet available. We're working on it
+  - **Archive** https://storage.googleapis.com/mint-snapshot/mint-sepolia-archive-snapshot-20250214.tar.zst
 
 Example:
 
