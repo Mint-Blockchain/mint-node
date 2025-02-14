@@ -70,8 +70,6 @@ services:
 
 ### Snapshots
 
-#### Download latest snapshot from Mint
-
 - **Mainnet**
   - **Archive** https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20250214.tar.zst
   - **Full**    https://storage.googleapis.com/mint-snapshot/mint-mainnet-full-snapshot-20250214.tar.zst
