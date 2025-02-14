@@ -68,7 +68,7 @@ services:
   - **Full**    https://storage.googleapis.com/mint-snapshot/mint-mainnet-full-snapshot-20250214.tar.zst
 
 #### Testnet
-  Not yet available. We're working on it
+  - **Archive** https://storage.googleapis.com/mint-snapshot/mint-sepolia-archive-snapshot-20250214.tar.zst
 
 #### Usage
 ```sh
