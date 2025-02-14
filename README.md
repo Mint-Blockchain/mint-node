@@ -1,15 +1,10 @@
 ![Mint](logo.png)
 
-# Mint node
+# Mint Node
 
 It currently supports Optimism’s open-source [OP Stack](https://stack.optimism.io/).
 
 This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
-
-### Software requirements
-
-- [Docker](https://docs.docker.com/desktop/)
-- [Python 3](https://www.python.org/downloads/)
 
 ### Hardware requirements
 
@@ -18,32 +13,30 @@ We recommend you have this configuration to run a node:
 - at least 2 Core * 8 GB RAM
 - an SSD drive with at least 200 GB free
 
-### Usage
+### Run a node
 
-1. ensure you have an Ethereum L1 full node RPC available:
+#### Step1: setting ETH L1 full-node RPC
 
-* setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be fully synced.
-* You also need a Beacon API RPC which can be set in `OP_NODE_L1_BEACON`.
-
-Example:
+* setting `OP_NODE_L1_ETH_RPC`. it needs to be fully synced if running your own L1 node.
+* setting `OP_NODE_L1_BEACON`. you need a Beacon RPC API.
 ```
 # .env file
 OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-2. Start the node
+#### Step2: start the node
 
-* for Mint Mainnet
+* Mint Mainnet
 ```
 docker compose -f docker-compose-mainnet.yml up --build
 ```
-* for Mint Sepolia
+* Mint Sepolia Testnet
 ```
 docker compose -f docker-compose-testnet-sepolia.yml up --build
 ```
 
-3. Test your node:
+#### Step3: check your node
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
@@ -70,31 +63,29 @@ services:
 
 ### Snapshots
 
-#### Download latest snapshot from Mint
+#### Mainnet
+  - **Archive** https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20250214.tar.zst
+  - **Full**    https://storage.googleapis.com/mint-snapshot/mint-mainnet-full-snapshot-20250214.tar.zst
 
-- **Mainnet**
-  - **Archive** https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst
-  - **Full**    https://storage.googleapis.com/mint-snapshot/mint-mainnet-full-snapshot-20250102.tar.zst
-
-- **Sepolia**
-  
+#### Testnet
   Not yet available. We're working on it
 
-Example:
-
+#### Usage
 ```sh
 mkdir -p ./data/mainnet-geth
 
 # Download latest snapshot tarball
 # You can choose one of two ways to download，Using aria2c to download can improve download speed, but you need to install aria2
-1.
-wget -c  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20241226.tar.zst 
-2.
-aria2c -x 16 -s 16 -k 100M  https://storage.googleapis.com/mint-mainnet-archive-snapshot-20241226.tar.zst 
+step1 download
+
+wget -c  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20250214.tar.zst 
+
+step2 unarchive
+
+aria2c -x 16 -s 16 -k 100M  https://storage.googleapis.com/mint-mainnet-archive-snapshot-20250214.tar.zst 
 
 # unzip snapshot to the ledger path:
-tar --use-compress-program=unzstd -xvf mint-mainnet-archive-snapshot-20241226.tar.zst -C ./data/mainnet-geth
-
+tar --use-compress-program=unzstd -xvf mint-mainnet-archive-snapshot-20250214.tar.zst -C ./data/mainnet-geth
 ```
 
 Check the data was unarchived successfully:
