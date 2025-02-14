@@ -15,17 +15,17 @@ We recommend you have this configuration to run a node:
 
 ### Run a node
 
-#### step1: ensure you have an Ethereum L1 full node RPC available:
+#### Step1: setting ETH L1 full-node RPC
 
-* setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be fully synced.
-* You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
+* setting `OP_NODE_L1_ETH_RPC`. it needs to be fully synced if running your own L1 node.
+* setting `OP_NODE_L1_BEACON`. you need a Beacon RPC API.
 ```
 # .env file
 OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-#### step2: Start the node
+#### Step2: start the node
 
 * Mint Mainnet
 ```
@@ -36,7 +36,7 @@ docker compose -f docker-compose-mainnet.yml up --build
 docker compose -f docker-compose-testnet-sepolia.yml up --build
 ```
 
-#### step3: check your node:
+#### Step3: check your node
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
@@ -76,14 +76,16 @@ mkdir -p ./data/mainnet-geth
 
 # Download latest snapshot tarball
 # You can choose one of two ways to download，Using aria2c to download can improve download speed, but you need to install aria2
-1.
+step1 download
+
 wget -c  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20250214.tar.zst 
-2.
+
+step2 unarchive
+
 aria2c -x 16 -s 16 -k 100M  https://storage.googleapis.com/mint-mainnet-archive-snapshot-20250214.tar.zst 
 
 # unzip snapshot to the ledger path:
 tar --use-compress-program=unzstd -xvf mint-mainnet-archive-snapshot-20250214.tar.zst -C ./data/mainnet-geth
-
 ```
 
 Check the data was unarchived successfully:
