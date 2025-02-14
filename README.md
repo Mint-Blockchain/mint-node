@@ -6,11 +6,6 @@ It currently supports Optimism’s open-source [OP Stack](https://stack.optimism
 
 This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
 
-### Software requirements
-
-- [Docker](https://docs.docker.com/desktop/)
-- [Python 3](https://www.python.org/downloads/)
-
 ### Hardware requirements
 
 We recommend you have this configuration to run a node:
@@ -20,19 +15,17 @@ We recommend you have this configuration to run a node:
 
 ### Usage
 
-1. ensure you have an Ethereum L1 full node RPC available:
+step 1. ensure you have an Ethereum L1 full node RPC available:
 
 * setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be fully synced.
 * You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
-
-Example:
 ```
 # .env file
 OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-2. Start the node
+step 2. Start the node
 
 * for Mint Mainnet
 ```
@@ -43,7 +36,7 @@ docker compose -f docker-compose-mainnet.yml up --build
 docker compose -f docker-compose-testnet-sepolia.yml up --build
 ```
 
-3. Test your node:
+step 3. check your node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
@@ -78,7 +71,7 @@ services:
   
   Not yet available. We're working on it
 
-Example:
+usage:
 
 ```sh
 mkdir -p ./data/mainnet-geth
