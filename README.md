@@ -1,6 +1,6 @@
 ![Mint](logo.png)
 
-# Mint node
+# Mint Node
 
 It currently supports Optimism’s open-source [OP Stack](https://stack.optimism.io/).
 
@@ -13,9 +13,9 @@ We recommend you have this configuration to run a node:
 - at least 2 Core * 8 GB RAM
 - an SSD drive with at least 200 GB free
 
-### Usage
+### Run a node
 
-step 1. ensure you have an Ethereum L1 full node RPC available:
+#### step1: ensure you have an Ethereum L1 full node RPC available:
 
 * setting `OP_NODE_L1_ETH_RPC`. If running your own L1 node, it needs to be fully synced.
 * You also need a Beacon API RPC which can be set in `OP_NODE_L1_ETH_RPC`.
@@ -25,18 +25,18 @@ OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-step 2. Start the node
+#### step2: Start the node
 
-* for Mint Mainnet
+* Mint Mainnet
 ```
 docker compose -f docker-compose-mainnet.yml up --build
 ```
-* for Mint Sepolia
+* Mint Sepolia Testnet
 ```
 docker compose -f docker-compose-testnet-sepolia.yml up --build
 ```
 
-step 3. check your node:
+#### step3: check your node:
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
@@ -63,16 +63,14 @@ services:
 
 ### Snapshots
 
-- **Mainnet**
+#### Mainnet
   - **Archive** https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20250214.tar.zst
   - **Full**    https://storage.googleapis.com/mint-snapshot/mint-mainnet-full-snapshot-20250214.tar.zst
 
-- **Sepolia**
-  
+#### Testnet
   Not yet available. We're working on it
 
-usage:
-
+#### Usage
 ```sh
 mkdir -p ./data/mainnet-geth
 
