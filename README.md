@@ -8,35 +8,35 @@ This repository contains the relevant Docker builds to run your own RPC node for
 
 ### Hardware requirements
 
-We recommend you have this configuration to run a node:
+we recommend this configuration to run a node:
 
 - at least 2 Core * 8 GB RAM
 - an SSD drive with at least 200 GB free
 
 ### Run a node
 
-#### Step1: setting ETH L1 full-node RPC
+#### Step1: Setting ETH L1 full-node RPC
 
-* setting `OP_NODE_L1_ETH_RPC`. it needs to be fully synced if running your own L1 node.
-* setting `OP_NODE_L1_BEACON`. you need a Beacon RPC API.
+* setting `OP_NODE_L1_ETH_RPC`. need fully synced.
+* setting `OP_NODE_L1_BEACON`.  need a Beacon RPC.
 ```
 # .env file
 OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
-#### Step2: start the node
+#### Step2: Start the node
 
-* Mint Mainnet
+* Mainnet
 ```
 docker compose -f docker-compose-mainnet.yml up --build
 ```
-* Mint Sepolia Testnet
+* Sepolia Testnet
 ```
 docker compose -f docker-compose-testnet-sepolia.yml up --build
 ```
 
-#### Step3: check your node
+#### Step3: Check your node
 
 ```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' -H "Content-Type: application/json" http://localhost:8545
@@ -54,10 +54,9 @@ services:
       - ./geth-data:/data
 ```
 
-3. By default, the node type is `Archive`. you can change the type of node via modify the value of `--gcmode` in the `op-geth-entrypoint` file. 
+3. Default node type is `archive`. you can change it via `op-geth-entrypoint`.
 
 ```
-# for full node
 --gcmode=full
 ```
 
@@ -103,14 +102,6 @@ Sync speed depends on your L1 node, as the majority of the chain is derived from
 command -v jq  &> /dev/null || { echo "jq is not installed" 1>&2 ; }
 echo Latest synced block behind by: $((($( date +%s )-\
 $( curl -s -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' -H "Content-Type: application/json" http://localhost:7545 | jq -r .result.unsafe_l2.timestamp))/60)) minutes
-```
-
-### Network Stats
-
-You can see how many nodes you are connected with the following command:
-
-```
-curl -d '{"id":0,"jsonrpc":"2.0","method":"opp2p_peerStats","params":[]}' -H "Content-Type: application/json" http://localhost:7545
 ```
 
 ### Troubleshooting
