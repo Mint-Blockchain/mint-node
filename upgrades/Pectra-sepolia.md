@@ -1,6 +1,6 @@
 ## Pectra sepolia upgrade
 ```
-The Pectra upgrade for the Sepolia Superchain will be activated at Wed Mar 5 at 07:29:36 UTC (1741159776).
+The Pectra upgrade for the Sepolia Superchain will be activated at Mar 20 at 04:00:00 UTC (1742486400).
 ```
 
 Node operators need to update your client before the activation date.

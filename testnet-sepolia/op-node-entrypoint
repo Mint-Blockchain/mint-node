@@ -44,4 +44,4 @@ fi
 
 echo "$CONDUIT_OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 
-exec op-node --override.fjord=1716998400 --override.granite=1723478400  --override.holocene=1732633200
+exec op-node --override.fjord=1716998400 --override.granite=1723478400  --override.holocene=1732633200  --override.pectrablobschedule=1742486400
