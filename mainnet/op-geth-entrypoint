@@ -92,4 +92,6 @@ exec geth \
 	--override.fjord=1720627201 \
 	--override.granite=1726070401 \
 	--override.holocene=1736445601 \
+	--db.engine=pebble \
+	--state.scheme=hash \
 	$ADDITIONAL_ARGS # intentionally unquoted
