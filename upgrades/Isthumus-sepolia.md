@@ -1,4 +1,4 @@
-## Pectra sepolia upgrade
+## Isthumus sepolia upgrade
 ```
 The Isthumus upgrade for the Sepolia Superchain will be activated at Thu Apr 17 16:00:00 UTC 2025 (1744905600) .
 ```
