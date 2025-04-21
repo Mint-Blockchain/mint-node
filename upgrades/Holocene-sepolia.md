@@ -7,7 +7,7 @@ Node operators need to update your client before the activation date.
 
 #### step 1: stop node
 ```
-docker compose down
+docker compose -f docker-compose-testnet-sepolia.yml down
 ```
 
 #### step 2: pull latest repo
@@ -24,7 +24,7 @@ Ensure that channel_timeout_granite and use_plasma have been removed from rollup
 
 #### step 4: start node
 ```
-docker compose up --build
+docker compose -f docker-compose-testnet-sepolia.yml up --build -d
 ```
 
 [Details of Holocene sepolia upgrade](https://docs.optimism.io/builders/notices/holocene-changes)
@@ -32,4 +32,3 @@ docker compose up --build
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
 | Mint Sepolia | v1.10.0 | v1.101411.2 |
-

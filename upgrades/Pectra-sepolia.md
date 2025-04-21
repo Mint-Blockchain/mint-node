@@ -7,7 +7,7 @@ Node operators need to update your client before the activation date.
 
 #### step 1: stop node
 ```
-docker compose down
+docker compose -f docker-compose-testnet-sepolia.yml down
 ```
 
 #### step 2: pull latest repo
@@ -29,7 +29,7 @@ Check whether the rollup.json file has added the following content:
 
 #### step 4: start node
 ```
-docker compose up --build
+docker compose -f docker-compose-testnet-sepolia.yml up --build -d
 ```
 
 [Details of Pectra sepolia upgrade](https://docs.optimism.io/notices/pectra-changes)
@@ -37,4 +37,3 @@ docker compose up --build
 | Network | op-node | op-geth |
 | ------- | ------- | ------- |
 | Mint Sepolia | v1.11.1 | v1.101500.0 |
-

@@ -15,9 +15,9 @@ docker compose -f docker-compose-testnet-sepolia.yml down
 git pull
 ```
 
-#### step 4: start node
+#### step 3: start node
 ```
-docker compose up --build -d
+docker compose -f docker-compose-testnet-sepolia.yml up --build -d
 ```
 
 [Details of upgrade](https://docs.optimism.io/notices/upgrade-15)
