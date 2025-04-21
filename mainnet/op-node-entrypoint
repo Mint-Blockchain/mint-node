@@ -17,4 +17,5 @@ echo "$CONDUIT_OP_NODE_L2_ENGINE_AUTH_RAW" > "$OP_NODE_L2_ENGINE_AUTH"
 exec op-node \
     --override.fjord=1720627201 \
     --override.granite=1726070401 \
-    --override.holocene=1736445601 
+    --override.holocene=1736445601 \
+    --override.isthmus=1746806401

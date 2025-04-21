@@ -94,4 +94,5 @@ exec geth \
 	--override.holocene=1736445601 \
 	--db.engine=pebble \
 	--state.scheme=hash \
+    --override.isthmus=1746806401 \
 	$ADDITIONAL_ARGS # intentionally unquoted
