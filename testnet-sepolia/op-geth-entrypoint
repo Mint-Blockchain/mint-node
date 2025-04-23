@@ -21,6 +21,7 @@ if [ ! -d "$GETH_CHAINDATA_DIR" ]; then
 	echo "Initializing genesis."
 	geth --verbosity="$VERBOSITY" init \
 		--datadir="$GETH_DATA_DIR" \
+		--state.scheme=hash \
 		"$OP_GETH_GENESIS_FILE_PATH"
 else
 	echo "$GETH_CHAINDATA_DIR exists."
@@ -89,7 +90,6 @@ exec geth \
 	--networkid="$CHAIN_ID" \
 	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
 	--port="$P2P_PORT" \
-	--db.engine=pebble \
 	--state.scheme=hash \
 	--override.fjord=1716998400 \
     --override.granite=1723478400 \
