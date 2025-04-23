@@ -2,26 +2,26 @@
 
 # Mint Node
 
-It currently supports Optimism’s open-source [OP Stack](https://stack.optimism.io/).
+It currently supports Optimism’s open-source [OP Stack](https://docs.optimism.io/stack/getting-started).
 
 This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
 
-### Hardware requirements
+### Hardware Requirements
 
-we recommend this configuration to run a node:
+Recommend configuration to run a node:
 
 - at least 2 Core * 8 GB RAM
 - an SSD drive with at least 200 GB free
 
-### Run a node
+### Running Node
 
 #### Step1: Setting ETH L1 full-node RPC
 
 * setting `OP_NODE_L1_ETH_RPC`. need fully synced.
 * setting `OP_NODE_L1_BEACON`.  need a Beacon RPC.
 ```
-# .env file
-OP_NODE_L1_ETH_RPC=https://eth-mainnet.g.alchemy.com/v2/<your key>
+# .env
+OP_NODE_L1_ETH_RPC=<your ETH rpc endpoint>
 OP_NODE_L1_BEACON=<beacon api rpc>
 ```
 
@@ -42,19 +42,17 @@ docker compose -f docker-compose-testnet-sepolia.yml up --build -d
 curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}' -H "Content-Type: application/json" http://localhost:8545
 ```
 
-#### Note
-1. Some L1 nodes (e.g. Erigon) do not support fetching storage proofs. You can work around this by specifying `--l1.trustrpc` when starting op-node (add it in `op-node-entrypoint` and rebuild the docker image with `docker compose build`.) Do not do this unless you fully trust the L1 node provider.
+#### Tips
 
-2. You can map a local data directory for `op-geth` by adding a volume mapping to `docker-compose-xxx.yml`:
+1. You can map a local data directory for `op-geth` by adding volume mapping to `docker-compose-xxx.yml`:
 ```
 services:
   geth: # this is Optimism's geth client
-    ...
     volumes:
-      - ./geth-data:/data
+      - /data/node_data:/data
 ```
 
-3. Default node type is `archive`. you can change it via `op-geth-entrypoint`.
+2. Default node type is `archive`. you can change it via `op-geth-entrypoint`.
 
 ```
 --gcmode=full
@@ -71,26 +69,22 @@ services:
 
 #### Usage
 ```sh
-mkdir -p ./data/mainnet-geth
+mkdir -p /data/node_data/geth
 
-# Download latest snapshot tarball
-# You can choose one of two ways to download，Using aria2c to download can improve download speed, but you need to install aria2
-step1 download
+# Download, You can choose one of two ways to download，Using aria2c to download can improve download speed, but you need to install aria2
+step1: download
 
 wget -c  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20250214.tar.zst 
 
-step2 unarchive
+step2: unarchive
 
 aria2c -x 16 -s 16 -k 100M  https://storage.googleapis.com/mint-mainnet-archive-snapshot-20250214.tar.zst 
 
 # unzip snapshot to the ledger path:
-tar --use-compress-program=unzstd -xvf mint-mainnet-archive-snapshot-20250214.tar.zst -C ./data/mainnet-geth
-```
+tar --use-compress-program=unzstd -xvf mint-mainnet-archive-snapshot-20250214.tar.zst -C /data/node_data/geth
 
-Check the data was unarchived successfully:
-
-```sh
-$ ls ./data/mainnet-geth
+step3: check
+$ ls /data/node_data/geth
 chaindata
 ```
 
