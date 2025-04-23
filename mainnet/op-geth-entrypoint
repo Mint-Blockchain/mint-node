@@ -21,6 +21,7 @@ if [ ! -d "$GETH_CHAINDATA_DIR" ]; then
 	echo "Initializing genesis."
 	geth --verbosity="$VERBOSITY" init \
 		--datadir="$GETH_DATA_DIR" \
+		--state.scheme=hash \
 		"$OP_GETH_GENESIS_FILE_PATH"
 else
 	echo "$GETH_CHAINDATA_DIR exists."
@@ -92,7 +93,6 @@ exec geth \
 	--override.fjord=1720627201 \
 	--override.granite=1726070401 \
 	--override.holocene=1736445601 \
-	--db.engine=pebble \
 	--state.scheme=hash \
     --override.isthmus=1746806401 \
 	$ADDITIONAL_ARGS # intentionally unquoted
