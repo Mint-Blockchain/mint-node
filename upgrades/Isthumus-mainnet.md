@@ -21,7 +21,7 @@ docker compose -f docker-compose-mainnet.yml up --build -d
 ```
 
 #### Main Changes
-1. add activation-timestamp `--override.isthmus=1746806401`
+1. add activation-timestamp `--override.isthmus=1746806401` for both op-node and op-geth
 
 2. upgrade client version:
 * op-node `v1.13.2`
