@@ -18,6 +18,11 @@ services:
     volumes:
       - ./geth-data/:/data # enable to have persistency between restarts
       - ./testnet-sepolia/genesis.json:/genesis.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
   op-node:
     pull_policy: always
     build:
@@ -37,3 +42,8 @@ services:
     volumes:
       - ./testnet-sepolia/rollup.json:/rollup.json
       - ./testnet-sepolia/genesis.json:/genesis.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"

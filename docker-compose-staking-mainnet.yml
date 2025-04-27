@@ -9,7 +9,12 @@ services:
       - "5001:5001"  # IPFS API
       - "8080:8080"  # Gateway port
     volumes:
-      #- ./data/ipfs:/data/ipfs   # enable to have persistency between restarts
+      - ./data/ipfs:/data/ipfs   # enable to have persistency between restarts
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
 
   nginx:
     image: nginx:latest
@@ -24,6 +29,11 @@ services:
     entrypoint: /bin/sh -c "/generate_nginx_config.sh && nginx -g 'daemon off;'"
     volumes:
       - ./staking/generate_nginx_config.sh:/generate_nginx_config.sh:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
 
   op-geth: # this is Optimism's geth client
     pull_policy: always
@@ -40,8 +50,14 @@ services:
       - .env.default
       - ./mainnet/.env
     volumes:
-      #- ./geth-data/:/data # enable to have persistency between restarts
+      - ./geth-data/:/data # enable to have persistency between restarts
       - ./mainnet/genesis.json:/genesis.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+
   op-node:
     pull_policy: always
     build:
@@ -61,3 +77,8 @@ services:
     volumes:
       - ./mainnet/rollup.json:/rollup.json
       - ./mainnet/genesis.json:/genesis.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
