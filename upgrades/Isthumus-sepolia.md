@@ -20,4 +20,11 @@ git pull
 docker compose -f docker-compose-testnet-sepolia.yml up --build -d
 ```
 
+#### Main Changes
+1. add activation-timestamp `--override.isthmus=1744905600` for both op-node and op-geth
+
+2. upgrade client version:
+* op-node `v1.13.2`
+* op-geth `v1.101503.4`
+
 [Details of upgrade](https://docs.optimism.io/notices/upgrade-15)
