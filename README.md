@@ -8,10 +8,10 @@ This repository contains the relevant Docker builds to run your own RPC node for
 
 ### Hardware Requirements
 
-Recommend configuration to run a node:
+Recommend minimal configuration to run a node:
 
-- at least 2 Core * 8 GB RAM
-- an SSD drive with at least 200 GB free
+- 2 Core * 8 GB RAM
+- 800GB SSD Drive (Archive Node)
 
 ### Running Node
 
