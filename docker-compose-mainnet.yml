@@ -16,7 +16,7 @@ services:
       - .env.default
       - ./mainnet/.env
     volumes:
-      - ./geth-data/:/data # enable to have persistency between restarts
+      - /data/node_data:/data
       - ./mainnet/genesis.json:/genesis.json
     logging:
       driver: "json-file"
