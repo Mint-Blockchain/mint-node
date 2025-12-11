@@ -11,25 +11,24 @@ Recommend minimal configuration to run a node:
 
 ### Running Node
 
-#### Step1: Setting ETH L1 full-node RPC
+#### Step1: Setting ETH L1 RPC
 
-* setting `OP_NODE_L1_ETH_RPC`. need fully synced.
-* setting `OP_NODE_L1_BEACON`.  need a Beacon RPC.
+* setting `OP_NODE_L1_ETH_RPC` and `OP_NODE_L1_BEACON`
 ```
 # .env
-OP_NODE_L1_ETH_RPC=<your ETH rpc endpoint>
-OP_NODE_L1_BEACON=<beacon api rpc>
+OP_NODE_L1_ETH_RPC=<ETH L1 RPC>
+OP_NODE_L1_BEACON=<Beacon RPC>
 ```
 
-#### Step2: Start the node
+#### Step2: Start the Node
 
-* Mainnet
+* 启动op-geth
 ```
-docker compose -f docker-compose-mainnet.yml up --build -d
+docker compose -f docker-compose.yml up -d op-geth
 ```
-* Sepolia Testnet
+* 启动op-node
 ```
-docker compose -f docker-compose-testnet-sepolia.yml up --build -d
+docker compose -f docker-compose.yml up -d op-node
 ```
 
 #### Step3: Check your node
@@ -46,11 +45,8 @@ Default node type is `archive`. you can change it via `--gcmode`.
 ### Snapshots
 
 #### Mainnet
-  - **Archive** https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20250214.tar.zst
-  - **Full**    https://storage.googleapis.com/mint-snapshot/mint-mainnet-full-snapshot-20250214.tar.zst
-
-#### Testnet
-  - **Archive** https://storage.googleapis.com/mint-snapshot/mint-sepolia-archive-snapshot-20250214.tar.zst
+* 快照时间为: 2025-12-08 21:05 ( UTC+9 )
+* Archive: https://storage.googleapis.com/conduit-networks-snapshots/mint-mainnet-0/latest.tar
 
 ### Troubleshooting
 
