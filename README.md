@@ -1,5 +1,3 @@
-![Mint](logo.png)
-
 # Mint Node
 
 This repository contains the relevant to run your own RPC node for Mint Blockchain.
@@ -56,4 +54,4 @@ Default node type is `archive`. you can change it via `--gcmode`.
 
 ### Troubleshooting
 
-If you encounter problems with your node, please open a [GitHub issue](https://github.com/Mint-Blockchain/mint-node/issues) or reach out on our [Discord](https://discord.com/invite/mint-blockchain):
+If you encounter problems, please open a [GitHub issue](https://github.com/Mint-Blockchain/mint-node/issues)
