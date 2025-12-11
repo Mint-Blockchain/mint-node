@@ -2,9 +2,7 @@
 
 # Mint Node
 
-It currently supports Optimism’s open-source [OP Stack](https://docs.optimism.io/stack/getting-started).
-
-This repository contains the relevant Docker builds to run your own RPC node for Mint Blockchain.
+This repository contains the relevant to run your own RPC node for Mint Blockchain.
 
 ### Hardware Requirements
 
@@ -44,19 +42,8 @@ curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}' -H "Co
 
 #### Tips
 
-1. You can map a local data directory for `op-geth` by adding volume mapping to `docker-compose-xxx.yml`:
-```
-services:
-  geth: # this is Optimism's geth client
-    volumes:
-      - /data/node_data:/data
-```
+Default node type is `archive`. you can change it via `--gcmode`.
 
-2. Default node type is `archive`. you can change it via `op-geth-entrypoint`.
-
-```
---gcmode=full
-```
 
 ### Snapshots
 
@@ -66,27 +53,6 @@ services:
 
 #### Testnet
   - **Archive** https://storage.googleapis.com/mint-snapshot/mint-sepolia-archive-snapshot-20250214.tar.zst
-
-#### Usage
-```sh
-mkdir -p /data/node_data/geth
-
-# Download, You can choose one of two ways to download，Using aria2c to download can improve download speed, but you need to install aria2
-step1: download
-
-wget -c  https://storage.googleapis.com/mint-snapshot/mint-mainnet-archive-snapshot-20250214.tar.zst 
-
-step2: unarchive
-
-aria2c -x 16 -s 16 -k 100M  https://storage.googleapis.com/mint-mainnet-archive-snapshot-20250214.tar.zst 
-
-# unzip snapshot to the ledger path:
-tar --use-compress-program=unzstd -xvf mint-mainnet-archive-snapshot-20250214.tar.zst -C /data/node_data/geth
-
-step3: check
-$ ls /data/node_data/geth
-chaindata
-```
 
 ### Troubleshooting
 
