@@ -1,47 +1,46 @@
-version: '3.8'
-
 services:
   op-geth: # this is Optimism's geth client
+    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101603.5
+    container_name: op-geth
     pull_policy: always
-    build:
-      context: .
-      dockerfile: ./mainnet/op-geth.Dockerfile
+    restart: unless-stopped
     ports:
-      - 8545:8545       # RPC
-      - 8546:8546       # websocket
-      - 30303:30303     # P2P TCP (currently unused)
-      - 30303:30303/udp # P2P UDP (currently unused)
-      - 7301:6060       # metrics
+      - 8545:8545       # HTTP RPC
+      - 8546:8546       # Websocket
+      - 30303:30303     # P2P TCP
+      - 30303:30303/udp # P2P UDP
+      - 6060:6060       # metrics
     env_file:
-      - .env.default
-      - ./mainnet/.env
+      - .env
     volumes:
-      - ./geth-data/:/data # enable to have persistency between restarts
-      - ./mainnet/genesis.json:/genesis.json
+      - /data/node_data:/data
+      - ./config/genesis.json:/genesis.json
+      - ./config/jwtsecret:/jwtsecret:ro
+      - ./scripts/start-op-geth.sh:/scripts/start-op-geth.sh:ro
+    entrypoint: ["/bin/sh", "/scripts/start-op-geth.sh"]
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
         max-file: "3"
   op-node:
+    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.2
+    container_name: op-node
     pull_policy: always
-    build:
-      context: .
-      dockerfile: ./mainnet/op-node.Dockerfile
-    depends_on:
-      - op-geth
+    restart: unless-stopped
     ports:
-      - 7545:8545     # RPC
+      - 9545:9545     # HTTP RPC
       - 9222:9222     # P2P TCP
       - 9222:9222/udp # P2P UDP
       - 7300:7300     # metrics
-      - 6060:6060     # pprof
     env_file:
-      - .env.default
-      - ./mainnet/.env
+      - .env
     volumes:
-      - ./mainnet/rollup.json:/rollup.json
-      - ./mainnet/genesis.json:/genesis.json
+      - ./config/rollup.json:/rollup.json
+      - ./config/genesis.json:/genesis.json
+      - ./config/jwtsecret:/jwtsecret:ro
+      - ./scripts/start-op-node.sh:/scripts/start-op-node.sh:ro
+    entrypoint: ["/bin/sh", "/scripts/start-op-node.sh"]
     logging:
       driver: "json-file"
       options:
