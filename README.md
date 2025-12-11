@@ -46,7 +46,7 @@ Default node type is `archive`. you can change it via `--gcmode`.
 
 #### Mainnet
 * 快照时间为: 2025-12-08 21:05 ( UTC+9 )
-* Archive: https://storage.googleapis.com/conduit-networks-snapshots/mint-mainnet-0/latest.tar
+* Archive(652GB): https://storage.googleapis.com/conduit-networks-snapshots/mint-mainnet-0/latest.tar
 
 ### Troubleshooting
 
