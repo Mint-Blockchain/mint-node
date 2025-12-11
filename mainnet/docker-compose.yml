@@ -1,5 +1,5 @@
 services:
-  op-geth: # this is Optimism's geth client
+  op-geth:
     image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101603.5
     container_name: op-geth
     pull_policy: always

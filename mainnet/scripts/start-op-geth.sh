@@ -48,10 +48,9 @@ exec geth \
 	--metrics.port=6060 \
 	--syncmode=full \
 	--gcmode=archive \
+	--rollup.sequencerhttp="$OP_GETH_SEQUENCER_HTTP" \
 	--nodiscover=true \
-	--rollup.disabletxpoolgossip=true \
 	--networkid=185 \
-	--gpo.blocks=10 \
 	--gpo.minsuggestedpriorityfee=10000000 \
 	--override.fjord=1720627201 \
 	--override.granite=1726070401 \
