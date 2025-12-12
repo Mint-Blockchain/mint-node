@@ -25,5 +25,4 @@ exec op-node \
     --override.fjord=1720627201 \
     --override.granite=1726070401 \
     --override.holocene=1736445601 \
-    --override.isthmus=1746806401 \
-    --override.jovian=1764691201
+    --override.isthmus=1746806401
