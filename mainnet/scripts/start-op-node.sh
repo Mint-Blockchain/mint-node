@@ -22,8 +22,7 @@ exec op-node \
     --metrics.addr=0.0.0.0 \
     --metrics.port=7300 \
     --verifier.l1-confs=5 \
-    --override.fjord=1716998400 \
-    --override.granite=1723478400 \
-    --override.holocene=1732633200 \
-    --override.pectrablobschedule=1742486400 \
-    --override.isthmus=1744905600
+    --override.fjord=1720627201 \
+    --override.granite=1726070401 \
+    --override.holocene=1736445601 \
+    --override.isthmus=1746806401
